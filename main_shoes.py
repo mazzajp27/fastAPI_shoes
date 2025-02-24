@@ -31,7 +31,7 @@ def get_shoe(id_shoe: int):
 @app.post("/shoes")
 def add_shoe(shoe: dict):
     data = load_data()
-    shoe["id"] = max(user["id"] for user in data) + 1 if data else 1
+    shoe["id"] = max(shoe["id"] for shoe in data) + 1 if data else 1
     data.append(shoe)
     with open('dados.json', 'w') as file:
         json.dump(data, file, indent=4)
