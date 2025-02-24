@@ -14,7 +14,7 @@ def home():
     data = load_data() 
     return {"Shoes": len(data)}
 
-@app.get("/shoes")
+@app.get("/all_shoes")
 def get_shoes():
     data = load_data()
     return data
