@@ -16,7 +16,7 @@
         "name": "Air Max Plus 3",
         "price": 1300,
         "image": "https://www.bing.com/images/search?view=detailV2&ccid=SGuO7dPu&id=48696F4A475C611EEB6AA4C57D64D1D7FA54D9E8&thid=OIP.SGuO7dPuc5JzQXZ8Kcm5JwHaEo&mediaurl=https%3a%2f%2fwww.sneakerstyle.fr%2fwp-content%2fuploads%2f2020%2f02%2fnike-air-max-plus-3-black-pimento-bright-ceramic-resin-CD7005-001-02.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.486b8eedd3ee73927341767c29c9b927%3frik%3d6NlU%252btfRZH3FpA%26pid%3dImgRaw%26r%3d0&exph=750&expw=1200&q=Nike+Air+Max+Plus+3+%e2%80%98%e2%80%99Sunset%2fTiger%e2%80%99%e2%80%99&simid=608033925484975939&FORM=IRPRST&ck=21BAFACCB2C23543A9DB3E5742C8E004&selectedIndex=0&itb=0",
-        "description": "Prestando homenagem ao Nike Air Max Plus Tiger OG, esta nova iteração é embelezada com um gradiente de cores inspirado no pôr do sol da Flórida. Possui uma combinação de tons laranja-vermelho na parte superior em malha, sobreposições de couro preto e um reforço imponente no calcanhar correspondente. A marca TN na língua, as letras Tuned Air na frente da sola e um mini swoosh no painel lateral completam o visual.",
+        "description": "Prestando homenagem ao Nike Air Max Plus Tiger OG, esta nova itera\u00c3\u00a7\u00c3\u00a3o \u00c3\u00a9 embelezada com um gradiente de cores inspirado no p\u00c3\u00b4r do sol da Fl\u00c3\u00b3rida. Possui uma combina\u00c3\u00a7\u00c3\u00a3o de tons laranja-vermelho na parte superior em malha, sobreposi\u00c3\u00a7\u00c3\u00b5es de couro preto e um refor\u00c3\u00a7o imponente no calcanhar correspondente. A marca TN na l\u00c3\u00adngua, as letras Tuned Air na frente da sola e um mini swoosh no painel lateral completam o visual.",
         "quantity": 30,
         "rating": {
             "rate": 4.7,
@@ -370,5 +370,29 @@
             "rate": 4.7,
             "count": 90
         }
+    },
+    {
+        "name": "Wild Rider Layers Unisex Sneakers",
+        "price": 2000.99,
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/380697/02/sv01/fnd/IND/fmt/png/,Wild-Rider-Layers-Unisex-Sneakers",
+        "description": "With design elements inspired by the movement and motion of city life, the Wild Rider Layers Unisex Sneakers brings a fresh new dimension to the iconic Rider family. We've layered a rich mix of premium leather, suede and hairy suede onto a nylon upper to create texture and a raw edgy look that is pure street. The IMEVA midsole and rubber outsole ensure combined lightweight comfort and great traction to take you forward, further and faster through your day and beyond.",
+        "quantity": 100,
+        "rating": {
+            "rate": 3.9,
+            "count": 120
+        },
+        "id": 35
+    },
+    {
+        "name": "Blazor mid",
+        "price": 2000.99,
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/380697/02/sv01/fnd/IND/fmt/png/,Wild-Rider-Layers-Unisex-Sneakers",
+        "description": "With design elements inspired by the movement and motion of city life, the Wild Rider Layers Unisex Sneakers brings a fresh new dimension to the iconic Rider family. We've layered a rich mix of premium leather, suede and hairy suede onto a nylon upper to create texture and a raw edgy look that is pure street. The IMEVA midsole and rubber outsole ensure combined lightweight comfort and great traction to take you forward, further and faster through your day and beyond.",
+        "quantity": 100,
+        "rating": {
+            "rate": 9.9,
+            "count": 50
+        },
+        "id": 36
     }
 ]

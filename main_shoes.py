@@ -25,7 +25,7 @@ def get_shoe(id_shoe: int):
     data = load_data()
     shoes = next((shoes for shoes in data if shoes["id"] == id_shoe), None)
     if shoes is None:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Shoes not found")
     return shoes
     
 @app.post("/shoes")
@@ -36,3 +36,11 @@ def add_shoe(shoe: dict):
     with open('dados.json', 'w') as file:
         json.dump(data, file, indent=4)
     return shoe
+
+@app.put("/shoes/{id_shoe}")
+def put_shoe(id_shoe: int):
+    data = load_data()
+    shoes = next((shoes for shoes in data if shoes["id"] == id_shoe), None)
+    if shoes is None:
+        raise HTTPException(status_code=404, detail="Shoes not found")
+    return shoes
