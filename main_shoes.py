@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import json
@@ -11,8 +12,8 @@ def load_data():
 class Shoes(BaseModel):
     name: str
     price: float
-    description: str
-    quantity: int
+    description: Optional[str] = None
+    quantity: Optional[int] = None
 
 @app.get("/")
 def get_shoes():

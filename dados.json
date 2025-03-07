@@ -257,5 +257,12 @@
         "price": 1200.0,
         "description": "tenis feito para corrida e dia a dia",
         "quantity": 500
+    },
+    {
+        "id": 39,
+        "name": "Nike shorts",
+        "price": 399.0,
+        "description": "",
+        "quantity": 10
     }
 ]
