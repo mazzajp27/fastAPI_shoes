@@ -15,10 +15,10 @@ def get_shoes(db: Session):
     return db.query(Shoes).all()
 
 def get_shoe(db: Session, id_shoe: int):
-    return db.query(Shoes).filter(Shoes.id == id_shoe).first()
+    return db.query(Shoes).filter(Shoes.id_shoe == id_shoe).first()
 
 def update_shoe(db: Session, id_shoe: int, shoe: ShoesUpdate):
-    db_shoe = db.query(Shoes).filter(Shoes.id == id_shoe).first()
+    db_shoe = db.query(Shoes).filter(Shoes.id_shoe == id_shoe).first()
     if db_shoe:
         for key, value in shoe.dict(exclude_unset=True).items():
             setattr(db_shoe, key, value)

@@ -1,11 +1,12 @@
 # fastAPI_shoes
 Criação de api com FastAPI hello world
 fazendo alteração
-
+### Para iniciar a aplicação digite o comando abaixo no diretório fastAPI_shoes/
+uvicorn app.main:app --reload
 
 ```bash
 
-projetos-joao/fastAPI_shoes/
+/fastAPI_shoes/
 │
 ├── app/
 │   ├── __init__.py
