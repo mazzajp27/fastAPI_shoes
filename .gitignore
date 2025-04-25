@@ -3,3 +3,4 @@ venv
 my_venv
 .venv
 __pycache__
+*.db
