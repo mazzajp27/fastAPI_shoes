@@ -26,7 +26,9 @@ uvicorn app.main:app --reload
 │   └── database.py    # Conexão e criação do banco
 │   ├── testes/
 │
-├── requirements.txt   # dependências do projeto
+├── env_exemplo.txt   # Exemplo para listar as variáveis de ambiente 
+├── requirements.txt  # Dependências do projeto
+├── .gitignore        # Arquivo que define o que o Git deve ignorar 
 └── README.md          # explicações
 
 ```

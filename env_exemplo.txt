@@ -1,0 +1,24 @@
+Parametros para utilizar o postgresql
+
+# Usuário do banco de dados
+USUARIO=meu_usuario
+
+# Senha do banco de dados
+SENHA=minha_senha
+
+# Host do banco (ex: localhost, 127.0.0.1 ou endereço da AWS, Heroku, etc.)
+AMBIENTE=localhost
+
+# Porta padrão do PostgreSQL é 5432
+PORTA=5432
+
+# Nome do banco de dados
+BANCO=meu_banco
+
+Parametros para utilizar o SQLite
+
+# Nome do banco de dados
+BANCO=meu_banco
+
+
+
