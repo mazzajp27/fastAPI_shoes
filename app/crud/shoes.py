@@ -25,3 +25,12 @@ def update_shoe(db: Session, id_shoe: int, shoe: ShoesUpdate):
         db.commit()
         db.refresh(db_shoe)
     return db_shoe
+
+def delete_shoe(db: Session, id_shoe: int):
+    db_shoe = db.query(Shoes).filter(Shoes.id_shoe == id_shoe).first()
+    if db_shoe is None:
+        return None
+    db.delete(db_shoe)
+    db.commit()
+    return db_shoe
+

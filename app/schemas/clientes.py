@@ -1,13 +1,14 @@
 # app/schemas/clientes.py
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import date
 
 class ClientesBase(BaseModel):
+    cpf: str
     nome: str
     telefone: str
-    email : str
+    email : EmailStr
     senha : str
     endereco : Optional[str] = None
     genero : str
@@ -15,12 +16,13 @@ class ClientesBase(BaseModel):
 
 
 class ClientesCreate(ClientesBase):
-    cpf: str
+    pass
 
 class ClientesUpdate(ClientesBase):
+    cpf: Optional[str] = None
     nome: Optional[str] = None
     telefone: Optional[str] = None
-    email: Optional[str] = None
+    email: Optional[EmailStr] = None
     senha: Optional[str] = None
     endereco: Optional[str] = None
     genero: Optional[str] = None
@@ -28,7 +30,7 @@ class ClientesUpdate(ClientesBase):
 
 
 class ClientesResponse(ClientesBase):
-    cpf: str
+    id_cliente: int
 
     class Config:
         orm_mode = True

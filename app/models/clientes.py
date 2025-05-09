@@ -5,7 +5,8 @@ from app.database import Base
 class Clientes(Base):
     __tablename__ = "clientes"
 
-    cpf = Column(String(11), primary_key=True, unique=True, index=True)
+    id_cliente = Column(Integer, primary_key=True, autoincrement=True)
+    cpf = Column(String(14), unique=True, index=True)
     nome = Column(String, nullable=False)
     telefone = Column(String)
     email = Column(String, unique=True, index=True)

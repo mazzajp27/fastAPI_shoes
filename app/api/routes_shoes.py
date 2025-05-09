@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from http import HTTPStatus
 from app.database import SessionLocal
 from app.crud import shoes as crud_shoes
 from app.schemas.shoes import ShoesCreate, ShoesUpdate, ShoesResponse
@@ -13,7 +14,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/shoes/", response_model=ShoesResponse)
+@router.post("/shoes/",status_code=HTTPStatus.CREATED,  response_model=ShoesResponse)
 def create_shoe(shoe: ShoesCreate, db: Session = Depends(get_db)):
     return crud_shoes.create_shoe(db, shoe)
 
@@ -31,6 +32,13 @@ def read_shoe(id_shoe: int, db: Session = Depends(get_db)):
 @router.put("/shoes/{id_shoe}", response_model=ShoesResponse)
 def update_shoe(id_shoe: int, shoe: ShoesUpdate, db: Session = Depends(get_db)):
     db_shoe = crud_shoes.update_shoe(db, id_shoe, shoe)
+    if db_shoe is None:
+        raise HTTPException(status_code=404, detail="Shoe não encontrado")
+    return db_shoe
+
+@router.delete("/shoes/{id_shoe}", response_model=ShoesResponse)
+def delete_shoe(id_shoe:int, db: Session = Depends(get_db)):
+    db_shoe = crud_shoes.delete_shoe(db, id_shoe)
     if db_shoe is None:
         raise HTTPException(status_code=404, detail="Shoe não encontrado")
     return db_shoe
