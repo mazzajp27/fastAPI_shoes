@@ -7,21 +7,28 @@ from datetime import date
 class ClientesBase(BaseModel):
     nome: str
     telefone: str
-    email = str
-    senha = str
-    endereco = Optional[str] = None
-    genero = str
-    data_nascimento = date
+    email : str
+    senha : str
+    endereco : Optional[str] = None
+    genero : str
+    data_nascimento : date
 
 
 class ClientesCreate(ClientesBase):
-    pass
+    cpf: str
 
 class ClientesUpdate(ClientesBase):
-    pass
+    nome: Optional[str] = None
+    telefone: Optional[str] = None
+    email: Optional[str] = None
+    senha: Optional[str] = None
+    endereco: Optional[str] = None
+    genero: Optional[str] = None
+    data_nascimento: Optional[date] = None
+
 
 class ClientesResponse(ClientesBase):
-    CPF: str
+    cpf: str
 
     class Config:
         orm_mode = True

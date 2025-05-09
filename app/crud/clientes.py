@@ -1,27 +1,27 @@
-# app/crud/shoes.py
+# app/crud/clientes.py
 
 from sqlalchemy.orm import Session
-from app.models.shoes import Shoes
-from app.schemas.shoes import ShoesCreate, ShoesUpdate
+from app.models.clientes import Clientes
+from app.schemas.clientes import ClientesCreate, ClientesUpdate
 
-def create_shoe(db: Session, shoe: ShoesCreate):
-    db_shoe = Shoes(**shoe.dict())
-    db.add(db_shoe)
+def create_cliente(db: Session, cliente: ClientesCreate):
+    db_cliente = Clientes(**cliente.dict())
+    db.add(db_cliente)
     db.commit()
-    db.refresh(db_shoe)
-    return db_shoe
+    db.refresh(db_cliente)
+    return db_cliente
 
-def get_shoes(db: Session):
-    return db.query(Shoes).all()
+def get_clientes(db: Session):
+    return db.query(Clientes).all()
 
-def get_shoe(db: Session, id_shoe: int):
-    return db.query(Shoes).filter(Shoes.id_shoe == id_shoe).first()
+def get_cliente(db: Session, id_cliente: str):
+    return db.query(Clientes).filter(Clientes.cpf == id_cliente).first()
 
-def update_shoe(db: Session, id_shoe: int, shoe: ShoesUpdate):
-    db_shoe = db.query(Shoes).filter(Shoes.id_shoe == id_shoe).first()
-    if db_shoe:
-        for key, value in shoe.dict(exclude_unset=True).items():
-            setattr(db_shoe, key, value)
+def update_cliente(db: Session, id_cliente: str, cliente: ClientesUpdate):
+    db_cliente = db.query(Clientes).filter(Clientes.cpf == id_cliente).first()
+    if db_cliente:
+        for key, value in cliente.dict(exclude_unset=True).items():
+            setattr(db_cliente, key, value)
         db.commit()
-        db.refresh(db_shoe)
-    return db_shoe
+        db.refresh(db_cliente)
+    return db_cliente
