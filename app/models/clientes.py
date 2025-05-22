@@ -12,7 +12,6 @@ class Clientes(Base):
     telefone = Column(String)
     email = Column(String, unique=True, index=True)
     senha = Column(String)
-    endereco = Column(String)
     genero = Column(String) 
     data_nascimento = Column(Date)
 
