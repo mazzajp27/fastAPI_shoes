@@ -16,4 +16,4 @@ class Clientes(Base):
     data_nascimento = Column(Date)
 
     # Relacionamento com compras
-    compras = relationship("ClienteShoe", back_populates="cliente")
+    cliente_shoes = relationship("ClienteShoe", back_populates="clientes")

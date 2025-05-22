@@ -16,4 +16,4 @@ class Shoes(Base):
     tamanho = Column(Integer)
     cor = Column(String)
     
-    cliente_shoes = relationship("ClienteShoe", back_populates="shoe")
+    cliente_shoes = relationship("ClienteShoe", back_populates="shoes")

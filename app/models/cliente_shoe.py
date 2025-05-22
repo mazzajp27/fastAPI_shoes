@@ -12,5 +12,5 @@ class ClienteShoe(Base):
     data_compra = Column(DateTime, default=datetime.utcnow)
 
     # Relacionamentos
-    cliente = relationship("Clientes", back_populates="compras")
-    shoe = relationship("Shoes", back_populates="cliente_shoes") 
+    clientes = relationship("Clientes", back_populates="cliente_shoes")
+    shoes = relationship("Shoes", back_populates="cliente_shoes") 
