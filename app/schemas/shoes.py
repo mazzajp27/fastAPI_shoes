@@ -8,6 +8,11 @@ class ShoesBase(BaseModel):
     preco: float
     descricao: Optional[str] = None
     quantidade: Optional[int] = None
+    imagem: Optional[str] = None
+    marca: str
+    modelo: str
+    tamanho: int
+    cor: str
 
 class ShoesCreate(ShoesBase):
     pass
@@ -19,4 +24,4 @@ class ShoesResponse(ShoesBase):
     id_shoe: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

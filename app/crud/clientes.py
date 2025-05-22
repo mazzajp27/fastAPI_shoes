@@ -34,3 +34,11 @@ def delete_cliente(db: Session, id_cliente: int):
     db.delete(db_cliente)
     db.commit()
     return db_cliente
+
+def login_cliente(db: Session, email: str, senha: str):
+    cliente = db.query(Clientes).filter(Clientes.email == email).first()
+    if not cliente:
+        return None
+    if cliente.senha != senha:  # Em produção, use hash de senha!
+        return None
+    return cliente

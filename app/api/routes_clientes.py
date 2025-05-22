@@ -3,7 +3,7 @@ from http import HTTPStatus
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import clientes as crud_clientes
-from app.schemas.clientes import ClientesCreate, ClientesUpdate, ClientesResponse
+from app.schemas.clientes import ClientesCreate, ClientesUpdate, ClientesResponse, ClienteLogin, ClienteLoginResponse
 
 router = APIRouter()
 
@@ -18,6 +18,23 @@ def validar_resposta_cliente(cliente: ClientesResponse):
     if not cliente.nome or not cliente.email:
         raise HTTPException(status_code=500, detail="Dados inválidos retornados do banco")
     return cliente
+
+@router.post("/clientes/login", response_model=ClienteLoginResponse)
+def login_cliente(login_data: ClienteLogin, db: Session = Depends(get_db)):
+    cliente = crud_clientes.login_cliente(db, login_data.email, login_data.senha)
+    if not cliente:
+        raise HTTPException(
+            status_code=401,
+            detail="Email ou senha inválidos"
+        )
+    
+    # Em produção, gere um token JWT real
+    token = "mock-jwt-token"
+    
+    return {
+        "token": token,
+        "user": validar_resposta_cliente(cliente)
+    }
 
 @router.post("/clientes/", status_code=HTTPStatus.CREATED, response_model=ClientesResponse)
 def create_cliente(cliente: ClientesCreate, db: Session = Depends(get_db)):

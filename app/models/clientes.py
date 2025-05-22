@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Date
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 
@@ -14,3 +15,6 @@ class Clientes(Base):
     endereco = Column(String)
     genero = Column(String) 
     data_nascimento = Column(Date)
+
+    # Relacionamento com compras
+    compras = relationship("ClienteShoe", back_populates="cliente")

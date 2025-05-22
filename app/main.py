@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from app.api import routes_shoes
 from app.api import routes_clientes
+from app.api import routes_cliente_shoe
 from app.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -26,5 +27,6 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 # Incluir as rotas
-app.include_router(routes_shoes.router, prefix="/api")
-app.include_router(routes_clientes.router, prefix="/api")
+app.include_router(routes_shoes.router, prefix="/api", tags=["shoes"])
+app.include_router(routes_clientes.router, prefix="/api", tags=["clientes"])
+app.include_router(routes_cliente_shoe.router, prefix="/api", tags=["cliente-shoe"])
