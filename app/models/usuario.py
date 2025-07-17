@@ -17,6 +17,6 @@ class Usuarios(Base):
     tipo = Column(String)
     
     __mapper_args__ = {
-        'polymorphic_identity': 'usuario',
+        'polymorphic_identity': 'usuarios',
         'polymorphic_on': 'tipo'
     }

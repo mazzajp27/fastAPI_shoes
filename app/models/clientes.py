@@ -7,7 +7,7 @@ from app.models.usuario import Usuarios
 class Clientes(Usuarios):
     __tablename__ = "clientes"
 
-    id = Column(Integer, ForeignKey(Usuarios.id_usuario), primary_key=True, autoincrement=True)
+    id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
     preferencias = Column(String, nullable=False)
     status = Column(String)
     data_cadastro = Column(Date)

@@ -1,40 +1,22 @@
 # app/schemas/clientes.py
-
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
+from pydantic import EmailStr
 from typing import Optional
 from datetime import date
+from .usuario import UsuarioBase
 
-class ClientesBase(BaseModel):
-    cpf: str
-    nome: str
-    telefone: str
-    email : EmailStr
-    senha : str
-    genero : str
-    data_nascimento : date
+class ClienteBase(UsuarioBase):
+    preferencias: Optional[str] = None
+    status: Optional[str] = None
+    data_cadastro: Optional[date] = None
 
-class ClientesCreate(ClientesBase):
+class ClienteCreate(ClienteBase):
     pass
 
-class ClientesUpdate(BaseModel):
-    cpf: Optional[str] = None
-    nome: Optional[str] = None
-    telefone: Optional[str] = None
-    email: Optional[EmailStr] = None
-    senha: Optional[str] = None
-    genero: Optional[str] = None
-    data_nascimento: Optional[date] = None
+class ClienteUpdate(ClienteBase):
+    pass
 
-class ClientesResponse(ClientesBase):
-    id_cliente: int
-
+class ClienteResponse(ClienteBase):
+    id: int
     class Config:
         from_attributes = True
-
-class ClienteLogin(BaseModel):
-    email: EmailStr
-    senha: str
-
-class ClienteLoginResponse(BaseModel):
-    token: str
-    user: ClientesResponse

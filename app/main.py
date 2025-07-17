@@ -27,6 +27,6 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 # Incluir as rotas
-app.include_router(routes_shoes.router, prefix="/api", tags=["shoes"])
-app.include_router(routes_clientes.router, prefix="/api", tags=["clientes"])
-app.include_router(routes_cliente_shoe.router, prefix="/api", tags=["cliente-shoe"])
+# app.include_router(routes_shoes.router, prefix="/api", tags=["shoes"])
+# app.include_router(routes_clientes.router, prefix="/api", tags=["clientes"])
+# app.include_router(routes_cliente_shoe.router, prefix="/api", tags=["cliente-shoe"])
