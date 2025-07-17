@@ -4,14 +4,14 @@ from app.database import Base
 from app.models.usuario import Usuarios
 
 
-class Clientes(Usuarios):
-    __tablename__ = "clientes"
+class Administrador(Usuarios):
+    __tablename__ = "administrador"
 
     id = Column(Integer, ForeignKey(Usuarios.id_usuario), primary_key=True, autoincrement=True)
-    preferencias = Column(String, nullable=False)
+    nivel_acesso = Column(String, nullable=False)
     status = Column(String)
     data_cadastro = Column(Date)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'clientes'
+        'polymorphic_identity': 'administrador'
     }

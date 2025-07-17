@@ -4,14 +4,15 @@ from app.database import Base
 from app.models.usuario import Usuarios
 
 
-class Clientes(Usuarios):
-    __tablename__ = "clientes"
-
+class Vendedor(Usuarios):
+    __tablename__ = "vendedor"
     id = Column(Integer, ForeignKey(Usuarios.id_usuario), primary_key=True, autoincrement=True)
-    preferencias = Column(String, nullable=False)
-    status = Column(String)
+    cnpj = Column(String(14), unique=True, index=True)
+    descricao = Column(String, nullable=False)
+    documentos = Column(String)
+    status = Column(String) 
     data_cadastro = Column(Date)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'clientes'
+        'polymorphic_identity': 'vendedor'
     }
