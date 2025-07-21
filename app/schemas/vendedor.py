@@ -1,6 +1,4 @@
 # app/schemas/clientes.py
-from pydantic import BaseModel
-from pydantic import EmailStr
 from typing import Optional
 from datetime import date
 from .usuario import UsuarioBase
