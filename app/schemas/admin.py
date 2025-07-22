@@ -5,9 +5,6 @@ from .usuario import UsuarioBase
 
 class AdminBase(UsuarioBase):
     nivel_acesso: str
-    status: Optional[str] = None
-    data_cadastro: Optional[date] = None
-
 class AdminCreate(AdminBase):
     pass
 
@@ -16,5 +13,9 @@ class AdminUpdate(AdminBase):
 
 class AdminResponse(AdminBase):
     id: int
+    data_cadastro: Optional[date] = None
+    tipo: Optional[str] = None
+    status: Optional[str] = None
+
     class Config:
         from_attributes = True

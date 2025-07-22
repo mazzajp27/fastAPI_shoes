@@ -7,8 +7,6 @@ class VendedorBase(UsuarioBase):
     cnpj: Optional[str] = None
     descricao: Optional[str] = None
     documentos: Optional[str] = None
-    status: Optional[str] = None
-    data_cadastro: Optional[date] = None
 
 class VendedorCreate(VendedorBase):
     pass
@@ -18,5 +16,8 @@ class VendedorUpdate(VendedorBase):
 
 class VendedorResponse(VendedorBase):
     id: int
+    data_cadastro: Optional[date] = None
+    tipo: Optional[str] = None
+    status: Optional[str] = None
     class Config:
         from_attributes = True

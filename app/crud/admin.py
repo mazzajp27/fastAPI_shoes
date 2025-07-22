@@ -4,6 +4,8 @@ from app.schemas.admin import AdminCreate, AdminUpdate
 
 def create_admin(db: Session, admin: AdminCreate):
     db_admin = Administrador(**admin.dict())
+    db_admin.tipo = "administrador"
+    db_admin.status = "ativo"
     db.add(db_admin)
     db.commit()
     db.refresh(db_admin)

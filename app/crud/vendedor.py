@@ -4,6 +4,8 @@ from app.schemas.vendedor import VendedorCreate, VendedorUpdate
 
 def create_vendedor(db: Session, vendedor: VendedorCreate):
     db_vendedor = Vendedor(**vendedor.dict())
+    db_vendedor.tipo = "vendedor"  
+    db_vendedor.status = "ativo"
     db.add(db_vendedor)
     db.commit()
     db.refresh(db_vendedor)

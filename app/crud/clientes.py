@@ -6,6 +6,8 @@ from app.schemas.clientes import ClienteCreate, ClienteUpdate
 
 def create_cliente(db: Session, cliente: ClienteCreate):
     db_cliente = Clientes(**cliente.dict())
+    db_cliente.tipo = "clientes"
+    db_cliente.status = "ativo"
     db.add(db_cliente)
     db.commit()
     db.refresh(db_cliente)

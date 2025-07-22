@@ -13,7 +13,6 @@ class UsuarioBase(BaseModel):
     senha: str
     genero: Optional[str] = None
     data_nascimento: Optional[date] = None
-    tipo: Optional[str] = None
 
 class UsuarioCreate(UsuarioBase):
     pass
@@ -31,5 +30,8 @@ class UsuarioUpdate(UsuarioBase):
 
 class UsuarioResponse(UsuarioBase):
     id: int
+    data_cadastro: Optional[date] = None
+    tipo: Optional[str] = None
+    status: Optional[str] = None
     class Config:
         from_attributes = True
