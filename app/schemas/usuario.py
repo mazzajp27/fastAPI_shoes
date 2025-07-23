@@ -15,7 +15,15 @@ class UsuarioBase(BaseModel):
     data_nascimento: Optional[date] = None
 
 class UsuarioCreate(UsuarioBase):
-    pass
+    cpf: Optional[str] = None
+    nome: Optional[str] = None
+    telefone: Optional[str] = None
+    endereco: Optional[str] = None
+    email: Optional[EmailStr] = None
+    senha: Optional[str] = None
+    genero: Optional[str] = None
+    data_nascimento: Optional[date] = None
+    tipo: Optional[str] = None
 
 class UsuarioUpdate(UsuarioBase):
     cpf: Optional[str] = None

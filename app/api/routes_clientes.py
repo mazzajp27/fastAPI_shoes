@@ -19,22 +19,6 @@ def validar_resposta_cliente(cliente: ClienteResponse):
         raise HTTPException(status_code=500, detail="Dados inválidos retornados do banco")
     return cliente
 
-# @router.post("/clientes/login", response_model=ClienteResponse)
-# def login_cliente(login_data: ClienteLogin, db: Session = Depends(get_db)):
-#     cliente = crud_clientes.login_cliente(db, login_data.email, login_data.senha)
-#     if not cliente:
-#         raise HTTPException(
-#             status_code=401,
-#             detail="Email ou senha inválidos"
-#         )
-    
-#     # Em produção, gere um token JWT real
-#     token = "mock-jwt-token"
-    
-#     return {
-#         "token": token,
-#         "user": validar_resposta_cliente(cliente)
-#     }
 
 @router.post("/clientes/", status_code=HTTPStatus.CREATED, response_model=ClienteResponse)
 def create_cliente(cliente: ClienteCreate, db: Session = Depends(get_db)):
@@ -55,6 +39,7 @@ def read_cliente(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Cliente não encontrado")
     return validar_resposta_cliente(db_cliente)
 
+
 @router.put("/clientes/{id}", response_model=ClienteResponse)
 def update_cliente(id: int, cliente: ClienteUpdate, db: Session = Depends(get_db)):
     db_cliente = crud_clientes.update_cliente(db, id, cliente)
@@ -63,7 +48,7 @@ def update_cliente(id: int, cliente: ClienteUpdate, db: Session = Depends(get_db
     return validar_resposta_cliente(db_cliente)
 
 @router.delete("/clientes/{id}", response_model=ClienteResponse)
-def delete_cliente(id:int, db: Session = Depends(get_db)):
+def delete_cliente(id: int, db: Session = Depends(get_db)):
     db_cliente = crud_clientes.delete_cliente(db, id)
     if db_cliente is None:
         raise HTTPException(status_code=404, detail="Cliente não encontrado")

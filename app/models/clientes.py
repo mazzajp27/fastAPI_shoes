@@ -13,7 +13,7 @@ class Clientes(Usuarios):
     status = Column(String)
     data_cadastro = Column(Date, default=datetime.utcnow)
 
-    # cliente_shoes = relationship("ClienteShoe", back_populates="clientes")
+    cliente_shoes = relationship("ClienteShoe", back_populates="clientes")
 
     __mapper_args__ = {
         'polymorphic_identity': 'clientes'

@@ -6,7 +6,6 @@ from .usuario import UsuarioBase
 class ClienteBase(UsuarioBase):
     preferencias: Optional[str] = None
     
-
 class ClienteCreate(ClienteBase):
     pass
 

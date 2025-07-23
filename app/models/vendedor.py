@@ -14,6 +14,8 @@ class Vendedor(Usuarios):
     status = Column(String) 
     data_cadastro = Column(Date, default=datetime.utcnow)
 
+    shoes = relationship("Shoes", back_populates="vendedor")
+
     __mapper_args__ = {
         'polymorphic_identity': 'vendedor'
     }

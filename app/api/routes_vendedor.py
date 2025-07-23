@@ -38,7 +38,7 @@ def update_vendedor(id: int, vendedor: VendedorUpdate, db: Session = Depends(get
     return db_vendedor
 
 @router.delete("/vendedores/{id}", response_model=VendedorResponse)
-def delete_vendedor(id:int, db: Session = Depends(get_db)):
+def delete_vendedor(id: int, db: Session = Depends(get_db)):
     db_vendedor = crud_vendedor.delete_vendedor(db, id)
     if db_vendedor is None:
         raise HTTPException(status_code=404, detail="Vendedor não encontrado")
