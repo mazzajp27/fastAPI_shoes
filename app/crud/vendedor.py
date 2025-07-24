@@ -1,11 +1,13 @@
 from sqlalchemy.orm import Session
 from app.models.vendedor import Vendedor
 from app.schemas.vendedor import VendedorCreate, VendedorUpdate
+from app.security.security import get_password_hash
 
 def create_vendedor(db: Session, vendedor: VendedorCreate):
     db_vendedor = Vendedor(**vendedor.dict())
     db_vendedor.tipo = "vendedor"  
     db_vendedor.status = "ativo"
+    db_vendedor.senha = get_password_hash(db_vendedor.senha)
     db.add(db_vendedor)
     db.commit()
     db.refresh(db_vendedor)

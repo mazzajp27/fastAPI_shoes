@@ -1,9 +1,11 @@
 from sqlalchemy.orm import Session
 from app.models.usuario import Usuarios
 from app.schemas.usuario import UsuarioCreate, UsuarioUpdate
+from app.security.security import get_password_hash
 
 def create_usuario(db: Session, usuario: UsuarioCreate):
     db_usuario = Usuarios(**usuario.dict())
+    db_usuario.senha = get_password_hash(db_usuario.senha)
     db.add(db_usuario)
     db.commit()
     db.refresh(db_usuario)
@@ -14,6 +16,9 @@ def get_usuarios(db: Session):
 
 def get_usuario(db: Session, id: int):
     return db.query(Usuarios).filter(Usuarios.id == id).first()
+
+def get_usuario_by_email(db: Session, email: str):
+    return db.query(Usuarios).filter(Usuarios.email == email).first()
 
 def update_usuario(db: Session, id: int, usuario: UsuarioUpdate):
     db_usuario = db.query(Usuarios).filter(Usuarios.id == id).first()

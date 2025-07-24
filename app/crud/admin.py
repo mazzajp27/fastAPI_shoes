@@ -1,11 +1,13 @@
 from sqlalchemy.orm import Session
 from app.models.admin import Administrador
 from app.schemas.admin import AdminCreate, AdminUpdate
+from app.security.security import get_password_hash
 
-def create_admin(db: Session, admin: AdminCreate):
+def create_admin(db: Session, admin: AdminCreate): 
     db_admin = Administrador(**admin.dict())
     db_admin.tipo = "administrador"
     db_admin.status = "ativo"
+    db_admin.senha = get_password_hash(db_admin.senha)
     db.add(db_admin)
     db.commit()
     db.refresh(db_admin)

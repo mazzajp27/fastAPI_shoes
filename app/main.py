@@ -6,6 +6,7 @@ from app.api import routes_cliente_shoe
 from app.api import routes_admin
 from app.api import routes_vendedor
 from app.api import routes_usuario
+from app.api import routes_security
 from app.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -36,3 +37,4 @@ app.include_router(routes_cliente_shoe.router, prefix="/api", tags=["cliente-sho
 app.include_router(routes_admin.router, prefix="/api", tags=["admin"])
 app.include_router(routes_vendedor.router, prefix="/api", tags=["vendedor"])
 app.include_router(routes_usuario.router, prefix="/api", tags=["usuario"])
+app.include_router(routes_security.router, prefix="/api", tags=["security"])

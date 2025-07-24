@@ -3,11 +3,13 @@
 from sqlalchemy.orm import Session
 from app.models.clientes import Clientes
 from app.schemas.clientes import ClienteCreate, ClienteUpdate
+from app.security.security import get_password_hash
 
 def create_cliente(db: Session, cliente: ClienteCreate):
     db_cliente = Clientes(**cliente.dict())
     db_cliente.tipo = "clientes"
     db_cliente.status = "ativo"
+    db_cliente.senha = get_password_hash(db_cliente.senha)
     db.add(db_cliente)
     db.commit()
     db.refresh(db_cliente)
