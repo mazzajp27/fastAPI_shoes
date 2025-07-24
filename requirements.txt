@@ -8,3 +8,4 @@ psycopg2-binary
 pydantic[email]
 pyjwt
 pwdlib
+pwdlib[argon2]
