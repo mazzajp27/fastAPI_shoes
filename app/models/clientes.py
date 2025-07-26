@@ -9,9 +9,8 @@ class Clientes(Usuarios):
     __tablename__ = "clientes"
 
     id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
-    preferencias = Column(String, nullable=False)
-    status = Column(String)
-    data_cadastro = Column(Date, default=datetime.utcnow)
+    preferencias = Column(String, nullable=True)
+    
 
     cliente_shoes = relationship("ClienteShoe", back_populates="clientes")
 

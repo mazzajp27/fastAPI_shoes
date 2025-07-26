@@ -8,12 +8,11 @@ from datetime import datetime
 class Vendedor(Usuarios):
     __tablename__ = "vendedor"
     id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
-    cnpj = Column(String(14), unique=True, index=True)
-    descricao = Column(String, nullable=False)
-    documentos = Column(String)
-    status = Column(String) 
-    data_cadastro = Column(Date, default=datetime.utcnow)
+    cnpj = Column(String(14), unique=True, index=True, nullable=False)
+    descricao = Column(String, nullable=True)
+    documentos = Column(String, nullable=False)
 
+    
     shoes = relationship("Shoes", back_populates="vendedor")
 
     __mapper_args__ = {

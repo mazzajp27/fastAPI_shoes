@@ -14,8 +14,8 @@ class ClienteUpdate(ClienteBase):
 
 class ClienteResponse(ClienteBase):
     id: int
-    data_cadastro: Optional[date] = None
-    tipo: Optional[str] = None
-    status: Optional[str] = None
+    data_cadastro: date
+    tipo: str
+    status: str
     class Config:
         from_attributes = True

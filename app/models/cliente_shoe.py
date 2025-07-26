@@ -7,9 +7,9 @@ from app.models.clientes import Clientes
 class ClienteShoe(Base):
     __tablename__ = "cliente_shoes"
 
-    id_compra = Column(Integer, primary_key=True, index=True)
-    id = Column(Integer, ForeignKey("clientes.id"),primary_key=True)
-    shoe_id = Column(Integer, ForeignKey("shoes.id_shoe"),primary_key=True)
+    id_compra = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id = Column(Integer, ForeignKey("clientes.id"))
+    shoe_id = Column(Integer, ForeignKey("shoes.id_shoe"))
     data_compra = Column(DateTime, default=datetime.utcnow)
 
     # Relacionamentos

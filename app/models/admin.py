@@ -9,9 +9,7 @@ class Administrador(Usuarios):
     __tablename__ = "administrador"
 
     id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
-    nivel_acesso = Column(String, nullable=False)
-    status = Column(String)
-    data_cadastro = Column(Date, default=datetime.utcnow)
+    nivel_acesso = Column(String, nullable=True)
 
     __mapper_args__ = {
         'polymorphic_identity': 'administrador'

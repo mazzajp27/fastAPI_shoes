@@ -4,6 +4,8 @@ from http import HTTPStatus
 from app.database import SessionLocal
 from app.crud import shoes as crud_shoes
 from app.schemas.shoes import ShoesCreate, ShoesUpdate, ShoesResponse
+from app.models.usuario import Usuarios
+# from app.security.security import get_current_user
 
 router = APIRouter()
 

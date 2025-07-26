@@ -6,6 +6,7 @@ from app.security.security import get_password_hash
 def create_usuario(db: Session, usuario: UsuarioCreate):
     db_usuario = Usuarios(**usuario.dict())
     db_usuario.senha = get_password_hash(db_usuario.senha)
+    db_usuario.status = "ativo"
     db.add(db_usuario)
     db.commit()
     db.refresh(db_usuario)
