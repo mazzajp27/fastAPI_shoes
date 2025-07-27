@@ -19,3 +19,12 @@ class ClienteResponse(ClienteBase):
     status: str
     class Config:
         from_attributes = True
+
+class ClienteListResponse(UsuarioBase):
+    id: int
+    data_cadastro: date
+    tipo: str
+    status: str
+    
+    class Config:
+        from_attributes = True

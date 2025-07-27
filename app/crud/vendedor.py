@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from app.models.vendedor import Vendedor
 from app.schemas.vendedor import VendedorCreate, VendedorUpdate
 from app.security.security import get_password_hash
+from app.models.usuario import Usuarios
 
 def create_vendedor(db: Session, vendedor: VendedorCreate):
     db_vendedor = Vendedor(**vendedor.dict())
@@ -14,7 +15,7 @@ def create_vendedor(db: Session, vendedor: VendedorCreate):
     return db_vendedor
 
 def get_vendedores(db: Session):
-    return db.query(Vendedor).all()
+    return db.query(Usuarios).filter(Usuarios.tipo == "vendedor").all()
 
 def get_vendedor(db: Session, id: int):
     return db.query(Vendedor).filter(Vendedor.id == id).first()

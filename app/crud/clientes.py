@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.models.clientes import Clientes
 from app.schemas.clientes import ClienteCreate, ClienteUpdate
 from app.security.security import get_password_hash
+from app.models.usuario import Usuarios
 
 def create_cliente(db: Session, cliente: ClienteCreate):
     db_cliente = Clientes(**cliente.dict())
@@ -16,7 +17,7 @@ def create_cliente(db: Session, cliente: ClienteCreate):
     return db_cliente
 
 def get_clientes(db: Session):
-    return db.query(Clientes).all()
+    return db.query(Usuarios).filter(Usuarios.tipo == "clientes").all()
 
 def get_cliente(db: Session, id: int):
     return db.query(Clientes).filter(Clientes.id == id).first()

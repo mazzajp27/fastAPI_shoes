@@ -3,7 +3,8 @@ from http import HTTPStatus
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import admin as crud_admin
-from app.schemas.admin import AdminCreate, AdminUpdate, AdminResponse
+from app.schemas.admin import AdminCreate, AdminUpdate, AdminResponse, AdminListResponse
+from app.security.security import get_current_user
 
 router = APIRouter()
 
@@ -19,9 +20,12 @@ def create_admin(admin: AdminCreate, db: Session = Depends(get_db)):
     novo_admin = crud_admin.create_admin(db, admin)
     return novo_admin
 
-@router.get("/admins/", response_model=list[AdminResponse])
-def read_admins(db: Session = Depends(get_db)):
-    return crud_admin.get_admins(db)
+@router.get("/admins/", response_model=list[AdminListResponse])
+def read_admins(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    admins = crud_admin.get_admins(db)
+    if admins is None:
+        raise HTTPException(status_code=404, detail="Nenhum admin encontrado")
+    return admins
 
 @router.get("/admins/{id}", response_model=AdminResponse)
 def read_admin(id: int, db: Session = Depends(get_db)):

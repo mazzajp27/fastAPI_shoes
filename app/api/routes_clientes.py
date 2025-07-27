@@ -3,7 +3,10 @@ from http import HTTPStatus
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import clientes as crud_clientes
-from app.schemas.clientes import ClienteCreate, ClienteUpdate, ClienteResponse
+from app.schemas.clientes import ClienteCreate, ClienteUpdate, ClienteResponse, ClienteListResponse
+from app.security.security import get_current_user
+from datetime import date
+
 
 router = APIRouter()
 
@@ -25,11 +28,11 @@ def create_cliente(cliente: ClienteCreate, db: Session = Depends(get_db)):
     novo_cliente = crud_clientes.create_cliente(db, cliente)
     return validar_resposta_cliente(novo_cliente)
 
-@router.get("/clientes/", response_model=list[ClienteResponse])
-def read_clientes(db: Session = Depends(get_db)):
+@router.get("/clientes/", response_model=list[ClienteListResponse])
+def read_clientes(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     clientes = crud_clientes.get_clientes(db)
-    for cliente in clientes:
-        validar_resposta_cliente(cliente)
+    if clientes is None:
+        raise HTTPException(status_code=404, detail="Nenhum cliente encontrado")
     return clientes
 
 @router.get("/clientes/{id}", response_model=ClienteResponse)

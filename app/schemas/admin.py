@@ -19,3 +19,12 @@ class AdminResponse(AdminBase):
 
     class Config:
         from_attributes = True
+
+class AdminListResponse(UsuarioBase):
+    id: int
+    data_cadastro: date
+    tipo: str
+    status: str
+    
+    class Config:
+        from_attributes = True

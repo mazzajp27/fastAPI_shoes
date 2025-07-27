@@ -3,7 +3,8 @@ from http import HTTPStatus
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import vendedor as crud_vendedor
-from app.schemas.vendedor import VendedorCreate, VendedorUpdate, VendedorResponse
+from app.schemas.vendedor import VendedorCreate, VendedorUpdate, VendedorResponse, VendedorListResponse
+from app.security.security import get_current_user
 
 router = APIRouter()
 
@@ -19,9 +20,12 @@ def create_vendedor(vendedor: VendedorCreate, db: Session = Depends(get_db)):
     novo_vendedor = crud_vendedor.create_vendedor(db, vendedor)
     return novo_vendedor
 
-@router.get("/vendedores/", response_model=list[VendedorResponse])
-def read_vendedores(db: Session = Depends(get_db)):
-    return crud_vendedor.get_vendedores(db)
+@router.get("/vendedores/", response_model=list[VendedorListResponse])
+def read_vendedores(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    vendedores = crud_vendedor.get_vendedores(db)
+    if vendedores is None:
+        raise HTTPException(status_code=404, detail="Nenhum vendedor encontrado")
+    return vendedores
 
 @router.get("/vendedores/{id}", response_model=VendedorResponse)
 def read_vendedor(id: int, db: Session = Depends(get_db)):

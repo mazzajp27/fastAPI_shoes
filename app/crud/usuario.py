@@ -36,4 +36,7 @@ def delete_usuario(db: Session, id: int):
         return None
     db.delete(db_usuario)
     db.commit()
-    return db_usuario 
+    return db_usuario
+
+def get_usuarios_por_tipo(db: Session, tipo: str):
+    return db.query(Usuarios).filter(Usuarios.tipo == tipo).all() 
