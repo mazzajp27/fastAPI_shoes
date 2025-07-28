@@ -17,17 +17,17 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/usuarios/", status_code=HTTPStatus.CREATED, response_model=UsuarioResponse)
-def create_usuario(usuario: UsuarioCreate, db: Session = Depends(get_db)):
-    novo_usuario = crud_usuario.create_usuario(db, usuario)
-    return novo_usuario
+# @router.post("/usuarios/", status_code=HTTPStatus.CREATED, response_model=UsuarioResponse)
+# def create_usuario(usuario: UsuarioCreate, db: Session = Depends(get_db)):
+#     novo_usuario = crud_usuario.create_usuario(db, usuario)
+#     return novo_usuario
 
 @router.get("/usuarios/", response_model=list[UsuarioResponse])
-def read_usuarios(db: Session = Depends(get_db), current_user = Depends(get_current_user)): 
+def read_usuarios(db: Session = Depends(get_db), current_user: Usuarios =  Depends(get_current_user)): 
     return crud_usuario.get_usuarios(db)
 
 @router.get("/usuarios/{id}", response_model=UsuarioResponse)
-def read_usuario(id: int, db: Session = Depends(get_db)):
+def read_usuario(id: int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
     db_usuario = crud_usuario.get_usuario(db, id)
     if db_usuario is None:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")

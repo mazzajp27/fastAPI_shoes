@@ -17,6 +17,7 @@ class ClienteResponse(ClienteBase):
     data_cadastro: date
     tipo: str
     status: str
+    preferencias: Optional[str] = None  # Tornando explícito que pode ser None
     class Config:
         from_attributes = True
 

@@ -19,6 +19,9 @@ class VendedorResponse(VendedorBase):
     data_cadastro: date
     tipo: str
     status: str
+    cnpj: Optional[str] = None  # Tornando explícito que pode ser None
+    descricao: Optional[str] = None
+    documentos: Optional[str] = None
     class Config:
         from_attributes = True
 
