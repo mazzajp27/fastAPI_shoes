@@ -2,24 +2,13 @@
 
 from sqlalchemy.orm import Session
 from app.models.shoes import Shoes
-from app.models.cliente_shoe import ClienteShoe
 from app.schemas.shoes import ShoesCreate, ShoesUpdate
 
-def create_shoe(db: Session, shoe: ShoesCreate):
-    # Extrair o cliente_id do schema
-    shoe_data = shoe.dict(exclude={'cliente_id'})
-    
-    # Criar o tênis
-    db_shoe = Shoes(**shoe_data)
+def create_shoe(db: Session, shoe: ShoesCreate, vendedor_id: int):
+    db_shoe = Shoes(**shoe.dict(), vendedor_id=vendedor_id)
     db.add(db_shoe)
     db.commit()
     db.refresh(db_shoe)
-    
-    # Criar o relacionamento
-    cliente_shoe = ClienteShoe(cliente_id=cliente_id, shoe_id=db_shoe.id_shoe)
-    db.add(cliente_shoe)
-    db.commit()
-    
     return db_shoe
 
 def get_shoes(db: Session):
