@@ -33,19 +33,19 @@ def read_usuario(id: int, db: Session = Depends(get_db), current_user: Usuarios 
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
     return db_usuario
 
-@router.put("/usuarios/{id}", response_model=UsuarioResponse)
-def update_usuario(id: int, usuario: UsuarioUpdate, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
-    if current_user.id != id and current_user.tipo != "administrador":
-        raise HTTPException(status_code=403, detail="Usuário não autorizado")
+# @router.put("/usuarios/{id}", response_model=UsuarioResponse)
+# def update_usuario(id: int, usuario: UsuarioUpdate, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
+#     if current_user.id != id and current_user.tipo != "administrador":
+#         raise HTTPException(status_code=403, detail="Usuário não autorizado")
     
-    try:
-        db_usuario = crud_usuario.update_usuario(db, id, usuario)
-        db.add(db_usuario)
-        db.commit()
-        db.refresh(db_usuario)
-        return current_user
-    except IntegrityError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+#     try:
+#         db_usuario = crud_usuario.update_usuario(db, id, usuario)
+#         db.add(db_usuario)
+#         db.commit()
+#         db.refresh(db_usuario)
+#         return current_user
+#     except IntegrityError as e:
+#         raise HTTPException(status_code=400, detail=str(e))
 
 @router.delete("/usuarios/{id}", response_model=UsuarioResponse )
 def delete_usuario(id:int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
