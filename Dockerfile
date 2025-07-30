@@ -1,14 +1,15 @@
 # Usa uma imagem oficial com Python
-FROM python:3.11-slim
+FROM python:3.13
 
 # Define diretório de trabalho
 WORKDIR /code
 
 # Copia os arquivos para o contêiner
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./requirements.txt /code/requirements.txt
 
-COPY . .
+RUN pip install --no-cache-dir --upgrade -r code/requirements.txt
+
+COPY . /code/app
 
 # Expõe a porta usada pelo FastAPI
 EXPOSE 8000
