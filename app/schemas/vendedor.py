@@ -4,9 +4,9 @@ from datetime import date
 from .usuario import UsuarioBase
 
 class VendedorBase(UsuarioBase):
+    nome_loja : str
     cnpj: str
     descricao: Optional[str] = None
-    documentos: str
 
 class VendedorCreate(VendedorBase):
     pass
@@ -18,10 +18,10 @@ class VendedorResponse(VendedorBase):
     id: int
     data_cadastro: date
     tipo: str
+    nome_loja: str
     status: str
-    cnpj: Optional[str] = None  # Tornando explícito que pode ser None
+    cnpj: Optional[str] = None  
     descricao: Optional[str] = None
-    documentos: Optional[str] = None
     class Config:
         from_attributes = True
 

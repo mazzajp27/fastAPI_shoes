@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import usuario as crud_usuario
 from app.schemas.usuario import UsuarioCreate, UsuarioUpdate, UsuarioResponse
-from app.security.security import get_current_user, get_password_hash
+from app.security.security import get_current_user, get_password_hash, get_current_admin
 from sqlalchemy.exc import IntegrityError
 from app.models.usuario import Usuarios
 
@@ -23,11 +23,11 @@ def get_db():
 #     return novo_usuario
 
 @router.get("/usuarios/", response_model=list[UsuarioResponse])
-def read_usuarios(db: Session = Depends(get_db), current_user: Usuarios =  Depends(get_current_user)): 
+def read_usuarios(db: Session = Depends(get_db), current_user: Usuarios =  Depends(get_current_admin)): 
     return crud_usuario.get_usuarios(db)
 
 @router.get("/usuarios/{id}", response_model=UsuarioResponse)
-def read_usuario(id: int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
+def read_usuario(id: int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_admin)):
     db_usuario = crud_usuario.get_usuario(db, id)
     if db_usuario is None:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
@@ -48,7 +48,7 @@ def read_usuario(id: int, db: Session = Depends(get_db), current_user: Usuarios 
 #         raise HTTPException(status_code=400, detail=str(e))
 
 @router.delete("/usuarios/{id}", response_model=UsuarioResponse )
-def delete_usuario(id:int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_user)):
+def delete_usuario(id:int, db: Session = Depends(get_db), current_user: Usuarios = Depends(get_current_admin)):
     if current_user.id != id and current_user.tipo != "administrador":
         raise HTTPException(status_code=403, detail="Usuário não autorizado")
     db_usuario = crud_usuario.delete_usuario(db, id)

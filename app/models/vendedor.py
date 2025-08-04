@@ -8,9 +8,9 @@ from datetime import datetime
 class Vendedor(Usuarios):
     __tablename__ = "vendedor"
     id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
+    nome_loja = Column(String, nullable=False)
     cnpj = Column(String(14), unique=True, index=True, nullable=False)
     descricao = Column(String, nullable=True)
-    documentos = Column(String, nullable=False)
 
     
     shoes = relationship("Shoes", back_populates="vendedor")
