@@ -18,10 +18,11 @@ class VendedorResponse(VendedorBase):
     id: int
     data_cadastro: date
     tipo: str
-    nome_loja: str
     status: str
+    nome_loja: str
     cnpj: Optional[str] = None  
     descricao: Optional[str] = None
+    
     class Config:
         from_attributes = True
 
