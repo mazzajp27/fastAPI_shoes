@@ -9,3 +9,4 @@ pydantic[email]
 pyjwt
 pwdlib
 pwdlib[argon2]
+python-multipart
