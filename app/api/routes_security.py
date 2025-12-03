@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm,  OAuth2AuthorizationCodeBearer
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
-from app.crud import usuario as crud_usuario
+from app.crud import user as crud_user
 from app.security.security import verify_password, create_access_token, verify_token, get_current_user
-from app.models.usuario import Usuarios
+from app.models.user import User
 from app.schemas.token import Token
 from datetime import timedelta
 
@@ -22,10 +22,10 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
     """
     Endpoint para login e obtenção de tokens de acesso
     """
-    usuario = crud_usuario.get_usuario_by_email(db, form_data.username)
-    if not usuario or not verify_password(form_data.password, usuario.senha):
+    user = crud_user.get_user_by_email(db, form_data.username)
+    if not user or not verify_password(form_data.password, user.password):
         raise HTTPException(status_code=401, detail="Credenciais inválidas")
-    return {"access_token": create_access_token({"sub": usuario.email, "tipo": usuario.tipo}), "token_type": "Bearer"}
+    return {"access_token": create_access_token({"sub": user.email, "tipo": user.type}), "token_type": "Bearer"}
 
 
 # no minuto 41:57 ele fala sobre aud que fala onde uma pessoa pode mexer no site a partir do token que é gerado

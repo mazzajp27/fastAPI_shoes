@@ -1,27 +1,13 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
 from logging.config import fileConfig
+
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+
 from alembic import context
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-
-# Monta a URL do banco a partir do .env
-usuario = os.getenv('USUARIO')
-senha = os.getenv('SENHA')
-banco = os.getenv('BANCO')
-ambiente = os.getenv('AMBIENTE')
-porta = os.getenv('PORTA')
-config.set_main_option(
-    "sqlalchemy.url",
-    f"postgresql://{usuario}:{senha}@{ambiente}:{porta}/{banco}"
-)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -29,16 +15,12 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
+from app.models.user import User
+from app.models.buyer import Buyer
+from app.models.seller import Seller
 # for 'autogenerate' support
-from app.models.admin import Administrador
-from app.models.clientes import Clientes
-from app.models.vendedor import Vendedor
-from app.models.usuario import Usuarios
-from app.models.shoes import Shoes
-from app.models.cliente_shoe import ClienteShoe
-
 from app.database import Base
-# target_metadata = mymodel.Base.metadata
+# target_metadata = mymodel.Base.metadat
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

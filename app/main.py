@@ -1,11 +1,9 @@
 # app/main.py
 from fastapi import FastAPI
-from app.api import routes_shoes
-from app.api import routes_clientes
-from app.api import routes_cliente_shoe
-from app.api import routes_admin
-from app.api import routes_vendedor
-from app.api import routes_usuario
+# from app.api import routes_shoes
+from app.api import routes_buyer
+from app.api import routes_seller
+from app.api import routes_user
 from app.api import routes_security
 from app.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,10 +29,8 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 # Incluir as rotas
-app.include_router(routes_shoes.router, prefix="/api", tags=["shoes"])
-app.include_router(routes_clientes.router, prefix="/api", tags=["clientes"])
-app.include_router(routes_cliente_shoe.router, prefix="/api", tags=["cliente-shoe"])
-app.include_router(routes_admin.router, prefix="/api", tags=["admin"])
-app.include_router(routes_vendedor.router, prefix="/api", tags=["vendedor"])
-app.include_router(routes_usuario.router, prefix="/api", tags=["usuario"])
+# app.include_router(routes_shoes.router, prefix="/api", tags=["shoes"])
+app.include_router(routes_user.router, prefix="/api", tags=["user"])
+app.include_router(routes_buyer.router, prefix="/api", tags=["buyer"])
+app.include_router(routes_seller.router, prefix="/api", tags=["seller"])
 app.include_router(routes_security.router, prefix="/api", tags=["security"])

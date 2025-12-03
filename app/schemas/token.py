@@ -7,4 +7,3 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     id: int
     email: str
-    tipo: str
